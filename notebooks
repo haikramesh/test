@@ -1,0 +1,44 @@
+-- Databricks notebook source
+--Example if we convert to dbUtils
+-- // %scala
+-- // dbutils.notebook.run("./PCA_Forecast_SellThru", 0, Map("lob" -> "Hardware", "BusinessUnitName" -> "'Gaming Devices','Hardware Other','Webcam/Headset'", "TableName" ->"GamingDevices" 
+-- // ,"dbname"->"Widgets"))
+refresh table accessories.sellthru_modelinputs;
+
+-- COMMAND ----------
+
+-- MAGIC %run ./SellIn_MSSales_1_Weekly_Forecast $lob="Hardware" $BusinessUnitName = "'Gaming Devices','Hardware Other','Webcam/Headset'" $TableName ="SellIn_GamingDevices" $dbname ="Accessories"
+
+-- COMMAND ----------
+
+-- MAGIC %run ./SellIn_MSSales_1_Weekly_Forecast $lob="Hardware" $BusinessUnitName = "'Keyboard'" $TableName ="SellIn_Keyboard" $dbname ="Accessories"
+
+-- COMMAND ----------
+
+-- MAGIC %run ./SellIn_MSSales_1_Weekly_Forecast $lob="Hardware" $BusinessUnitName = "'Mouse'" $TableName ="SellIn_Mouse" $dbname ="Accessories"
+
+-- COMMAND ----------
+
+-- MAGIC %run ./SellIn_MSSales_1_Weekly_Forecast $lob="Surface Accessories" $BusinessUnitName = "'Surface Branded Accessories Others','Surface Docking Station','Surface Keyboard','Surface Pen'" $TableName ="SellIn_SurfaceKeyboard" $dbname ="Accessories"
+
+-- COMMAND ----------
+
+-- MAGIC %run ./SellIn_MSSales_1_Weekly_Forecast $lob="Surface Accessories" $BusinessUnitName = "'Surface Covers'" $TableName ="SellIn_SurfaceCovers" $dbname ="Accessories"
+
+-- COMMAND ----------
+
+-- MAGIC %run ./SellIn_MSSales_1_Weekly_Forecast $lob="Surface Accessories" $BusinessUnitName = "'Surface Mouse'" $TableName ="SellIn_SurfaceMouse" $dbname ="Accessories"
+
+-- COMMAND ----------
+
+-- MAGIC %run ./SellIn_MSSales_1_Weekly_Forecast $lob="Surface Accessories" $BusinessUnitName = "'Surface Power Supply','Surface Attach Accessories Other','Surface Adapters'" $TableName ="SellIn_SurfacePowerSupply" $dbname ="Accessories"
+
+-- COMMAND ----------
+
+-- SELECT COUNT(*) FROM Widgets.SurfacePowerSupply --440949
+--  SELECT COUNT(*) FROM Widgets.SurfaceMouse --321565
+--  SELECT COUNT(*) FROM Widgets.SurfaceCovers --460849
+--  SELECT COUNT(*) FROM Widgets.SurfaceKeyboard --340029
+--  SELECT COUNT(*) FROM Widgets.Mouse --844854
+--  SELECT COUNT(*) FROM Widgets.Keyboard --475454
+-- SELECT COUNT(*) FROM Widgets.GamingDevices --286869
